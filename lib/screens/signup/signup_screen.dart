@@ -106,9 +106,9 @@ class SignUpScreen extends StatelessWidget {
                                     formKey.currentState.save();
                                     if (user.password != user.confirmPassword) {
                                       scaffoldkey.currentState
-                                          .showSnackBar(SnackBar(
+                                          .showSnackBar(const SnackBar(
                                         content:
-                                            const Text('Senhas diferentes'),
+                                            Text('Senhas diferentes'),
                                         backgroundColor: Colors.red,
                                       ));
                                       return;
@@ -131,11 +131,11 @@ class SignUpScreen extends StatelessWidget {
                                   }
                                 },
                           child: userManager.loading
-                              ? CircularProgressIndicator(
+                              ? const CircularProgressIndicator(
                                   valueColor:
                                       AlwaysStoppedAnimation(Colors.white),
                                 )
-                              : Text(
+                              : const Text(
                                   'Criar Conta',
                                   style: TextStyle(fontSize: 18.0),
                                 ),

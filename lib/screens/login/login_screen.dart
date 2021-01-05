@@ -104,7 +104,7 @@ class LoginScreen extends StatelessWidget {
                             Theme.of(context).primaryColor.withAlpha(100),
                         textColor: Colors.white,
                         child: userManager.loading
-                            ? CircularProgressIndicator(
+                            ? const CircularProgressIndicator(
                                 valueColor:
                                     AlwaysStoppedAnimation(Colors.white),
                               )
