@@ -72,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                       child: FlatButton(
                         onPressed: () {},
                         padding: EdgeInsets.zero,
-                        child: Text('Esqueci a senha'),
+                        child: const Text('Esqueci a senha'),
                       ),
                     ),
                     const SizedBox(height: 20.0),

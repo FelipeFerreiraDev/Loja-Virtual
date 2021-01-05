@@ -1,5 +1,4 @@
 import 'package:BJDelivery/models/page_manager.dart';
-import 'package:BJDelivery/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:BJDelivery/commom/custom_drawer/custom_drawer.dart';
 import 'package:provider/provider.dart';

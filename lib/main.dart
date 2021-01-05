@@ -1,3 +1,4 @@
+import 'package:BJDelivery/models/product_manager.dart';
 import 'package:BJDelivery/models/user_manager.dart';
 import 'package:BJDelivery/screens/login/login_screen.dart';
 import 'package:BJDelivery/screens/signup/signup_screen.dart';
@@ -13,9 +14,17 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => UserManager(),
-      lazy: false,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => UserManager(),
+          lazy: false,
+        ),
+        Provider(
+          create: (_) => ProductManager(),
+          lazy: false,
+        )
+      ],
       child: MaterialApp(
         title: 'BJ Delivery',
         debugShowCheckedModeBanner: false,
@@ -30,12 +39,12 @@ class MyApp extends StatelessWidget {
           switch (settings.name) {
             case '/login':
               return MaterialPageRoute(builder: (_) => LoginScreen());
-            
+
             case '/signup':
               return MaterialPageRoute(builder: (_) => SignUpScreen());
-            
+
             case '/base':
-            default: 
+            default:
               return MaterialPageRoute(builder: (_) => BaseScreen());
           }
         },
