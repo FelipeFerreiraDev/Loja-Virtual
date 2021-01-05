@@ -1,6 +1,8 @@
+import 'package:BJDelivery/models/product.dart';
 import 'package:BJDelivery/models/product_manager.dart';
 import 'package:BJDelivery/models/user_manager.dart';
 import 'package:BJDelivery/screens/login/login_screen.dart';
+import 'package:BJDelivery/screens/product/product_screen.dart';
 import 'package:BJDelivery/screens/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +44,10 @@ class MyApp extends StatelessWidget {
 
             case '/signup':
               return MaterialPageRoute(builder: (_) => SignUpScreen());
+
+            case '/product':
+              return MaterialPageRoute(
+                  builder: (_) => ProductScreen(settings.arguments as Product));
 
             case '/base':
             default:
