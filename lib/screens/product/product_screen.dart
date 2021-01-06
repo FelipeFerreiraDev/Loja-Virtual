@@ -48,7 +48,7 @@ class ProductScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'R\$ 19.99',
+                  'R\$ ${product.price.toString()}',
                   style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -64,7 +64,36 @@ class ProductScreen extends StatelessWidget {
                 Text(
                   product.description,
                   style: const TextStyle(fontSize: 16),
-                )
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 16, bottom: 8),
+                  child: Text(
+                    'Quantidades no estoque',
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                  ),
+                ),
+                Text(
+                  product.stock.toString(),
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                    color: product.stock > 0
+                        ? Theme.of(context).primaryColor
+                        : Colors.red,
+                  ),
+                ),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      width: 85,
+                      child: TextFormField(
+                        decoration: const InputDecoration(hintText: 'Quantidade'),
+                        keyboardType: TextInputType.number,
+                        autocorrect: false,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           )
