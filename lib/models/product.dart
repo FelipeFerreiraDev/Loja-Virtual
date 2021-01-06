@@ -8,6 +8,8 @@ class Product {
     images = List<String>.from(document.data['images'] as List<dynamic>);
     price = document['price'] as num;
     stock = document['stock'] as int;
+    typeOfSale = document['typeOfSale'] as bool;
+    weigth = document['weigth'] as num;
   }
 
   String id;
@@ -16,4 +18,6 @@ class Product {
   List<String> images;
   num price;
   int stock;
+  bool typeOfSale; //verdadeiro para quantidade e falso para peso
+  num weigth;
 }

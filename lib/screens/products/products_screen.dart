@@ -30,7 +30,7 @@ class ProductsScreen extends StatelessWidget {
                           productManager.search = search;
                         }
                       },
-                      child: Container(
+                      child: SizedBox(
                           width: constraints.biggest.width,
                           child: Text(
                             productManager.search,

@@ -48,7 +48,9 @@ class ProductScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'R\$ ${product.price.toString()}',
+                  product.typeOfSale == true
+                      ? 'R\$ ${product.price.toString()}'
+                      : 'R\$ ${product.price.toString()} /kg' ,
                   style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -73,7 +75,9 @@ class ProductScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  product.stock.toString(),
+                  product.typeOfSale == true && product.stock >= 0
+                      ? product.stock.toString()
+                      : '${product.weigth.toString()} /g',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
@@ -84,10 +88,13 @@ class ProductScreen extends StatelessWidget {
                 ),
                 Row(
                   children: <Widget>[
-                    Container(
-                      width: 85,
+                    SizedBox(
+                      width: 200,
                       child: TextFormField(
-                        decoration: const InputDecoration(hintText: 'Quantidade'),
+                        decoration: InputDecoration(
+                            hintText: product.typeOfSale == true
+                                ? 'Unidade'
+                                : 'Peso em gramas'),
                         keyboardType: TextInputType.number,
                         autocorrect: false,
                       ),
