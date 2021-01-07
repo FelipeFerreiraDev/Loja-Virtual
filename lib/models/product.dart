@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 
-class Product {
+class Product extends ChangeNotifier{
   Product.fromDocument(DocumentSnapshot document) {
     id = document.documentID;
     name = document['name'] as String;
@@ -20,4 +21,11 @@ class Product {
   int stock;
   bool typeOfSale; //verdadeiro para quantidade e falso para peso
   num weigth;
+
+  int _selectedCount;
+  int get selectedCount => _selectedCount;
+  set selectedCount(int value) {
+    _selectedCount = value;
+    notifyListeners();
+  }
 }
