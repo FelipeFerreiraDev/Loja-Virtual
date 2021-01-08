@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProductScreen extends StatelessWidget {
+  final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController valueController = TextEditingController();
 
@@ -87,7 +89,7 @@ class ProductScreen extends StatelessWidget {
                     child: Text(
                       'Quantidades no estoque',
                       style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
                     ),
                   ),
                   Text(
@@ -95,7 +97,7 @@ class ProductScreen extends StatelessWidget {
                         ? product.stock.toString()
                         : '${product.weigth.toString()} /g',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 22,
                       fontWeight: FontWeight.w800,
                       color: product.stock > 0
                           ? Theme.of(context).primaryColor
@@ -104,24 +106,21 @@ class ProductScreen extends StatelessWidget {
                   ),
                   SizedBox(
                     width: 200,
-                    child: Form(
-                      key: formKey,
-                      child: TextFormField(
-                        controller: valueController,
-                        decoration: InputDecoration(
-                            hintText: product.typeOfSale == true
-                                ? 'Unidade'
-                                : 'Peso em gramas'),
-                        keyboardType: TextInputType.number,
-                        autocorrect: false,
-                      ),
+                    child: TextFormField(
+                      controller: valueController,
+                      decoration: InputDecoration(
+                          hintText: product.typeOfSale == true
+                              ? 'Unidade'
+                              : 'Peso em gramas'),
+                      keyboardType: TextInputType.number,
+                      autocorrect: false,
                     ),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Consumer2<UserManager, Product>(
-                    builder: (_, userManager, product, __) {
+                  Consumer<UserManager>(
+                    builder: (_, userManager, __) {
                       return SizedBox(
                         height: 44,
                         child: RaisedButton(
@@ -130,30 +129,26 @@ class ProductScreen extends StatelessWidget {
                             if (userManager.isLoggedIn) {}
                             if (userManager.isLoggedIn == false) {
                               Navigator.of(context).pushNamed('/login');
-                            } else if (valor > product.stock) {
-                              Scaffold(
-                                body: const SnackBar(
-                                  content: Text(
-                                      'O valor das unidades ultrapassou o valor do estoque'),
-                                  backgroundColor: Colors.red,
-                                ),
-                              );
+                            } else if (valor > product.stock || valor < 0) {
+                              return showAlertDialog1(context);
                             } else if (valueController.text == '' ||
                                 valueController.text == ' ' ||
                                 valueController.text == null ||
                                 valueController.text.isEmpty == true ||
                                 valueController.value.text.isEmpty) {
-                              return print(
-                                  'Preencha o valor das unidades para continuar');
+                              return showAlertDialog1(context);
                             } else {
                               print(valor);
                             }
                           },
                           color: Theme.of(context).primaryColor,
                           textColor: Colors.white,
-                          child: Text(userManager.isLoggedIn
-                              ? 'Adicionar ao carrinho'
-                              : 'Entre para comprar'),
+                          child: Text(
+                            userManager.isLoggedIn
+                                ? 'Adicionar ao carrinho'
+                                : 'Entre para comprar',
+                            style: const TextStyle(fontSize: 18),
+                          ),
                         ),
                       );
                     },
@@ -166,4 +161,29 @@ class ProductScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+showAlertDialog1(BuildContext context) {
+  // configura o button
+  final Widget okButton = FlatButton(
+    child: const Text("OK"),
+    onPressed: () {
+      Navigator.pop(context);
+    },
+  );
+  // configura o  AlertDialog
+  final AlertDialog alerta = AlertDialog(
+    title: const Text("Valor digitado inválido"),
+    content: const Text("Digite uma quantidade existente no estoque"),
+    actions: [
+      okButton,
+    ],
+  );
+  // exibe o dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alerta;
+    },
+  );
 }
