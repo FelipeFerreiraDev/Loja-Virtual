@@ -1,3 +1,4 @@
+import 'package:BJDelivery/models/cart_manager.dart';
 import 'package:BJDelivery/models/product.dart';
 import 'package:BJDelivery/models/user_manager.dart';
 import 'package:carousel_pro/carousel_pro.dart';
@@ -138,7 +139,8 @@ class ProductScreen extends StatelessWidget {
                                 valueController.value.text.isEmpty) {
                               return showAlertDialog1(context);
                             } else {
-                              print(valor);
+                              context.read<CartManager>().addToCart(product);
+                              Navigator.of(context).pushNamed('/cart');
                             }
                           },
                           color: Theme.of(context).primaryColor,

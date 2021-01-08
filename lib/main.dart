@@ -1,6 +1,8 @@
+import 'package:BJDelivery/models/cart_manager.dart';
 import 'package:BJDelivery/models/product.dart';
 import 'package:BJDelivery/models/product_manager.dart';
 import 'package:BJDelivery/models/user_manager.dart';
+import 'package:BJDelivery/screens/cart/cart_screen.dart';
 import 'package:BJDelivery/screens/login/login_screen.dart';
 import 'package:BJDelivery/screens/product/product_screen.dart';
 import 'package:BJDelivery/screens/signup/signup_screen.dart';
@@ -25,6 +27,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => ProductManager(),
           lazy: false,
+        ),
+        Provider(
+          create: (_) => CartManager(),
+          lazy: false,
         )
       ],
       child: MaterialApp(
@@ -48,6 +54,10 @@ class MyApp extends StatelessWidget {
             case '/product':
               return MaterialPageRoute(
                   builder: (_) => ProductScreen(settings.arguments as Product));
+
+            case '/cart':
+              return MaterialPageRoute(
+                  builder: (_) => CartScreen());
 
             case '/base':
             default:
