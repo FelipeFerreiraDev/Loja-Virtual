@@ -10,7 +10,7 @@ class Product extends ChangeNotifier{
     price = document['price'] as num;
     stock = document['stock'] as int;
     typeOfSale = document['typeOfSale'] as bool;
-    weigth = document['weigth'] as num;
+    //weigth = document['weigth'] as num;
   }
 
   String id;
@@ -20,7 +20,7 @@ class Product extends ChangeNotifier{
   num price;
   int stock;
   bool typeOfSale; //verdadeiro para quantidade e falso para peso
-  num weigth;
+  //num weigth;
 
   int _selectedCount;
   int get selectedCount => _selectedCount;

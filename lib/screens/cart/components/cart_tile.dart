@@ -1,4 +1,5 @@
 import 'package:BJDelivery/models/cart_product.dart';
+import 'package:BJDelivery/models/product_manager.dart';
 import 'package:flutter/material.dart';
 
 class CartTile extends StatelessWidget {
@@ -36,9 +37,8 @@ class CartTile extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
                   ),
-                  Text(
-                    'R\$ ${cartProduct.product.price}'
-                  )
+                  Text('Quantidade pedida: ${cartProduct.quantity}'),
+                  Text('R\$ ${cartProduct.product.price}'),
                 ],
               ),
             ))

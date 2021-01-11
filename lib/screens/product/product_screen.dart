@@ -96,7 +96,7 @@ class ProductScreen extends StatelessWidget {
                   Text(
                     product.typeOfSale == true && product.stock >= 0
                         ? product.stock.toString()
-                        : '${product.weigth.toString()} /g',
+                        : '${product.stock} /g',
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w800,
@@ -140,7 +140,7 @@ class ProductScreen extends StatelessWidget {
                               return showAlertDialog1(context);
                             } else {
                               context.read<CartManager>().addToCart(product);
-                              Navigator.of(context).pushNamed('/cart');
+                              Navigator.of(context).pushNamed('/cart', arguments: {'quantidade': valueController.text});
                             }
                           },
                           color: Theme.of(context).primaryColor,
