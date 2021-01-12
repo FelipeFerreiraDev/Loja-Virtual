@@ -28,9 +28,11 @@ class MyApp extends StatelessWidget {
           create: (_) => ProductManager(),
           lazy: false,
         ),
-        Provider(
+        ProxyProvider<UserManager, CartManager>(
           create: (_) => CartManager(),
           lazy: false,
+          update: (_, userManager, cartManager) =>
+              cartManager..updateUser(userManager),
         )
       ],
       child: MaterialApp(
@@ -56,8 +58,7 @@ class MyApp extends StatelessWidget {
                   builder: (_) => ProductScreen(settings.arguments as Product));
 
             case '/cart':
-              return MaterialPageRoute(
-                  builder: (_) => CartScreen());
+              return MaterialPageRoute(builder: (_) => CartScreen());
 
             case '/base':
             default:

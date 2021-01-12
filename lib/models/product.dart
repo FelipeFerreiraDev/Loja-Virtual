@@ -22,10 +22,11 @@ class Product extends ChangeNotifier{
   bool typeOfSale; //verdadeiro para quantidade e falso para peso
   //num weigth;
 
-  int _selectedCount;
-  int get selectedCount => _selectedCount;
-  set selectedCount(int value) {
-    _selectedCount = value;
+/*  int _selectedStock;
+  int get selectedStock => _selectedStock;
+  set selectedStock(int value) {
+    _selectedStock = value;
+    print(value);
     notifyListeners();
-  }
+  }*/
 }
