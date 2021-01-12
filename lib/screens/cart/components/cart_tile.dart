@@ -1,5 +1,4 @@
 import 'package:BJDelivery/models/cart_product.dart';
-import 'package:BJDelivery/models/product_manager.dart';
 import 'package:flutter/material.dart';
 
 class CartTile extends StatelessWidget {
@@ -28,13 +27,13 @@ class CartTile extends StatelessWidget {
                   Text(
                     cartProduct.product.name,
                     style:
-                        TextStyle(fontWeight: FontWeight.w500, fontSize: 17.0),
+                        const TextStyle(fontWeight: FontWeight.w500, fontSize: 17.0),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
                       'Quantidade no estoque: ${cartProduct.product.stock}',
-                      style: TextStyle(fontWeight: FontWeight.w500),
+                      style: const TextStyle(fontWeight: FontWeight.w500),
                     ),
                   ),
                   Text('Quantidade pedida: ${cartProduct.quantity}'),

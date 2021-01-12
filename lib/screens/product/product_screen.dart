@@ -140,7 +140,7 @@ class ProductScreen extends StatelessWidget {
                               return showAlertDialog1(context);
                             } else {
                               context.read<CartManager>().addToCart(product);
-                              Navigator.of(context).pushNamed('/cart', arguments: {'quantidade': valueController.text});
+                              Navigator.of(context).pushNamed('/cart');
                             }
                           },
                           color: Theme.of(context).primaryColor,

@@ -12,13 +12,13 @@ class CartScreen extends StatelessWidget {
         title: const Text('Carrinho'),
         centerTitle: true,
       ),
-      body: Consumer<CartManager>(
-        builder: (_, cartManager, __) {
-          return Column(
-            children: cartManager.items.map((cartProduct) => CartTile(cartProduct)).toList(),
-          );
-        }
-      ),
+      body: Consumer<CartManager>(builder: (_, cartManager, __) {
+        return Column(
+          children: cartManager.items
+              .map((cartProduct) => CartTile(cartProduct))
+              .toList(),
+        );
+      }),
     );
   }
 }
