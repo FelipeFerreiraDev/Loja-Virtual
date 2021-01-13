@@ -1,3 +1,4 @@
+import 'package:BJDelivery/commom/custom_icon_button.dart';
 import 'package:BJDelivery/models/cart_product.dart';
 import 'package:flutter/material.dart';
 
@@ -23,11 +24,12 @@ class CartTile extends StatelessWidget {
                 child: Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     cartProduct.product.name,
-                    style:
-                        const TextStyle(fontWeight: FontWeight.w500, fontSize: 17.0),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500, fontSize: 17.0),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
@@ -36,11 +38,37 @@ class CartTile extends StatelessWidget {
                       style: const TextStyle(fontWeight: FontWeight.w500),
                     ),
                   ),
-                  Text('Quantidade pedida: ${cartProduct.quantity}'),
-                  Text('R\$ ${cartProduct.product.price}'),
+                  Text(
+                      cartProduct.product.typeOfSale == true
+                          ? 'R\$ ${cartProduct.product.price}'
+                          : 'R\$ ${cartProduct.product.price}/Kg',
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ))
                 ],
               ),
-            ))
+            )),
+            Column(
+              children: <Widget>[
+                CustomIconButton(
+                  iconData: Icons.add,
+                  color: Theme.of(context).primaryColor,
+                  onTap: cartProduct.increment,
+                ),
+                Text(cartProduct.product.typeOfSale == true
+                          ? '${cartProduct.quantity}'
+                          : '${cartProduct.quantity}/g',
+                  style: const TextStyle(fontSize: 20),
+                ),
+                CustomIconButton(
+                  iconData: Icons.remove,
+                  color: Theme.of(context).primaryColor,
+                  onTap: cartProduct.decrement,
+                ),
+              ],
+            )
           ],
         ),
       ),

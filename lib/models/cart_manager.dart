@@ -27,7 +27,7 @@ class CartManager {
   void addToCart(Product product) {
     try {
       final e = items.firstWhere((p) => p.stackable(product));
-      e.quantity++;
+      product.typeOfSale == true ? e.quantity++ : e.quantity += 25;
     } catch (e) {
       final cartProduct = CartProduct.fromProduct(product);
       items.add(CartProduct.fromProduct(product));

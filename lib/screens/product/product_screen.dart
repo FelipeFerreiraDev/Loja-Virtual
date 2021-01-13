@@ -9,7 +9,6 @@ class ProductScreen extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController valueController = TextEditingController();
 
   final userLogin = UserManager().isLoggedIn;
 
@@ -31,7 +30,7 @@ class ProductScreen extends StatelessWidget {
           children: <Widget>[
             SizedBox(
               width: 150,
-              height: 300,
+              height: 375,
               child: AspectRatio(
                 aspectRatio: 1,
                 child: Carousel(
@@ -96,25 +95,13 @@ class ProductScreen extends StatelessWidget {
                   Text(
                     product.typeOfSale == true && product.stock >= 0
                         ? product.stock.toString()
-                        : '${product.stock} /g',
+                        : '${product.stock} /kg',
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w800,
                       color: product.stock > 0
                           ? Theme.of(context).primaryColor
                           : Colors.red,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 200,
-                    child: TextFormField(
-                      controller: valueController,
-                      decoration: InputDecoration(
-                          hintText: product.typeOfSale == true
-                              ? 'Unidade'
-                              : 'Peso em gramas'),
-                      keyboardType: TextInputType.number,
-                      autocorrect: false,
                     ),
                   ),
                   const SizedBox(
@@ -126,18 +113,9 @@ class ProductScreen extends StatelessWidget {
                         height: 44,
                         child: RaisedButton(
                           onPressed: () {
-                            final valor = int.parse(valueController.text);
                             if (userManager.isLoggedIn) {}
                             if (userManager.isLoggedIn == false) {
                               Navigator.of(context).pushNamed('/login');
-                            } else if (valor > product.stock || valor < 0) {
-                              return showAlertDialog1(context);
-                            } else if (valueController.text == '' ||
-                                valueController.text == ' ' ||
-                                valueController.text == null ||
-                                valueController.text.isEmpty == true ||
-                                valueController.value.text.isEmpty) {
-                              return showAlertDialog1(context);
                             } else {
                               context.read<CartManager>().addToCart(product);
                               Navigator.of(context).pushNamed('/cart');
@@ -164,7 +142,7 @@ class ProductScreen extends StatelessWidget {
     );
   }
 }
-
+/*
 showAlertDialog1(BuildContext context) {
   // configura o button
   final Widget okButton = FlatButton(
@@ -188,4 +166,4 @@ showAlertDialog1(BuildContext context) {
       return alerta;
     },
   );
-}
+}*/

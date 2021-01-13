@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CartProduct extends ChangeNotifier {
   CartProduct.fromProduct(this.product) {
     productId = product.id;
-    quantity = 1;
+    quantity = product.typeOfSale == true ? 1 : 25;
   }
 
   CartProduct.fromDocument(DocumentSnapshot document) {
@@ -34,5 +34,21 @@ class CartProduct extends ChangeNotifier {
 
   bool stackable(Product product) {
     return product.id == productId;
+  }
+
+  void increment() {
+    if (product.typeOfSale == false) {
+      quantity += 25;
+    } else {
+      quantity++;
+    }
+  }
+
+  void decrement() {
+    if (product.typeOfSale == false) {
+      quantity -= 25;
+    } else {
+      quantity--;
+    }
   }
 }
