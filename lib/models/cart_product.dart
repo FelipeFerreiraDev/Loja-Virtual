@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class CartProduct extends ChangeNotifier {
-
   CartProduct.fromProduct(this.product) {
     productId = product.id;
     quantity = 1;
@@ -31,5 +30,9 @@ class CartProduct extends ChangeNotifier {
       'pid': productId,
       'quantity': quantity,
     };
+  }
+
+  bool stackable(Product product) {
+    return product.id == productId;
   }
 }

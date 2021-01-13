@@ -9,25 +9,29 @@ class CartManager {
 
   User user;
 
-  void updateUser(UserManager userManager){
+  void updateUser(UserManager userManager) {
     user = userManager.user;
     items.clear();
 
-    if(user != null) {
+    if (user != null) {
       _loadCartItems();
     }
   }
 
-  Future<void> _loadCartItems() async{
+  Future<void> _loadCartItems() async {
     final QuerySnapshot cartSnap = await user.cartReference.getDocuments();
-  
+
     items = cartSnap.documents.map((d) => CartProduct.fromDocument(d)).toList();
   }
 
   void addToCart(Product product) {
-    final cartProduct = CartProduct.fromProduct(product);
-    items.add(CartProduct.fromProduct(product));
-    user.cartReference.add(cartProduct.toCartItemMap());
-
+    try {
+      final e = items.firstWhere((p) => p.stackable(product));
+      e.quantity++;
+    } catch (e) {
+      final cartProduct = CartProduct.fromProduct(product);
+      items.add(CartProduct.fromProduct(product));
+      user.cartReference.add(cartProduct.toCartItemMap());
+    }
   }
 }
