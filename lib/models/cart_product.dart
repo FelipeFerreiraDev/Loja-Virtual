@@ -28,6 +28,15 @@ class CartProduct extends ChangeNotifier {
 
   Product product;
 
+  num get unitPrice {
+    if (product == null) return 0;
+    return product.price ?? 0;
+  }
+
+  num get totalPrice => product.typeOfSale == true
+      ? quantity * product.price
+      : (quantity / 1000) * product.price;
+
   Map<String, dynamic> toCartItemMap() {
     return {
       'pid': productId,
@@ -57,5 +66,9 @@ class CartProduct extends ChangeNotifier {
       quantity--;
       notifyListeners();
     }
+  }
+
+  bool get hasStock {
+    return product.stock >= quantity;
   }
 }
