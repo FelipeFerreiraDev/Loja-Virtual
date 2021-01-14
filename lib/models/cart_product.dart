@@ -9,6 +9,7 @@ class CartProduct extends ChangeNotifier {
   }
 
   CartProduct.fromDocument(DocumentSnapshot document) {
+    id = document.documentID;
     productId = document.data['pid'] as String;
     quantity = document.data['quantity'] as int;
 
@@ -19,6 +20,8 @@ class CartProduct extends ChangeNotifier {
   }
 
   final Firestore firestore = Firestore.instance;
+
+  String id;
 
   String productId;
   int quantity;
@@ -39,16 +42,20 @@ class CartProduct extends ChangeNotifier {
   void increment() {
     if (product.typeOfSale == false) {
       quantity += 25;
+      notifyListeners();
     } else {
       quantity++;
+      notifyListeners();
     }
   }
 
   void decrement() {
     if (product.typeOfSale == false) {
       quantity -= 25;
+      notifyListeners();
     } else {
       quantity--;
+      notifyListeners();
     }
   }
 }
