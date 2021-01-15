@@ -1,4 +1,5 @@
 import 'package:BJDelivery/models/cart_manager.dart';
+import 'package:BJDelivery/models/home_manager.dart';
 import 'package:BJDelivery/models/product.dart';
 import 'package:BJDelivery/models/product_manager.dart';
 import 'package:BJDelivery/models/user_manager.dart';
@@ -26,6 +27,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => ProductManager(),
+          lazy: false,
+        ),
+        Provider(
+          create: (_) => HomeManager(),
           lazy: false,
         ),
         ChangeNotifierProxyProvider<UserManager, CartManager>(
