@@ -1,4 +1,5 @@
 import 'package:BJDelivery/models/page_manager.dart';
+import 'package:BJDelivery/screens/home/home_screen.dart';
 import 'package:BJDelivery/screens/products/products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:BJDelivery/commom/custom_drawer/custom_drawer.dart';
@@ -15,12 +16,7 @@ class BaseScreen extends StatelessWidget {
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
-          Scaffold(
-            drawer: CustomDrawer(),
-            appBar: AppBar(
-              title: const Text('Home'),
-            ),
-          ),
+          HomeScreen(),
           ProductsScreen(),
           Scaffold(
             drawer: CustomDrawer(),
