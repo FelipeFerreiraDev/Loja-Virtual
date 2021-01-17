@@ -1,7 +1,8 @@
 import 'package:BJDelivery/models/section.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
-class HomeManager {
+class HomeManager extends ChangeNotifier{
   HomeManager() {
     _loadSections();
   }
@@ -16,8 +17,7 @@ class HomeManager {
       for (final DocumentSnapshot document in snapshot.documents) {
         sections.add(Section.fromDocument(document));
       }
-
-      print(sections);
+      notifyListeners();
     });
   }
 }
