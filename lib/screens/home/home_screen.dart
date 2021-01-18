@@ -1,6 +1,7 @@
 import 'package:BJDelivery/commom/custom_drawer/custom_drawer.dart';
 import 'package:BJDelivery/models/home_manager.dart';
 import 'package:BJDelivery/screens/home/components/section_list.dart';
+import 'package:BJDelivery/screens/home/components/section_staggered.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -43,10 +44,10 @@ class HomeScreen extends StatelessWidget {
                   final List<Widget> children =
                       homeManager.sections.map<Widget>((section) {
                     switch (section.type) {
+                      case 'Staggered':
+                        return SectionStaggered(section);
                       case 'List':
                         return SectionList(section);
-                      case 'Staggered':
-                        return Container();
                       default:
                         return Container();
                     }
