@@ -1,4 +1,5 @@
 import 'package:BJDelivery/models/page_manager.dart';
+import 'package:BJDelivery/models/user_manager.dart';
 import 'package:BJDelivery/screens/home/home_screen.dart';
 import 'package:BJDelivery/screens/products/products_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,19 +13,42 @@ class BaseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider(
       create: (_) => PageManager(pageController),
-      child: PageView(
-        controller: pageController,
-        physics: const NeverScrollableScrollPhysics(),
-        children: <Widget>[
-          HomeScreen(),
-          ProductsScreen(),
-          Scaffold(
-            drawer: CustomDrawer(),
-            appBar: AppBar(
-              title: const Text('Home4'),
-            ),
-          ),
-        ],
+      child: Consumer<UserManager>(
+        builder: (_, userManager, __) {
+          return PageView(
+            controller: pageController,
+            physics: const NeverScrollableScrollPhysics(),
+            children: <Widget>[
+              HomeScreen(),
+              ProductsScreen(),
+              Scaffold(
+                  drawer: CustomDrawer(),
+                  appBar: AppBar(
+                    title: const Text('Home3'),
+                  )),
+              Scaffold(
+                drawer: CustomDrawer(),
+                appBar: AppBar(
+                  title: const Text('Home4'),
+                ),
+              ),
+              if (userManager.adminEnabled) ...[
+                Scaffold(
+                  drawer: CustomDrawer(),
+                  appBar: AppBar(
+                    title: const Text('Usuários'),
+                  ),
+                ),
+                Scaffold(
+                  drawer: CustomDrawer(),
+                  appBar: AppBar(
+                    title: const Text('Pedidos'),
+                  ),
+                ),
+              ]
+            ],
+          );
+        },
       ),
     );
   }

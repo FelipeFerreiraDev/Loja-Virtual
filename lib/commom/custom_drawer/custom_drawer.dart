@@ -1,6 +1,8 @@
 import 'package:BJDelivery/commom/custom_drawer/custom_drawer_header.dart';
 import 'package:BJDelivery/commom/custom_drawer/drawer_tile.dart';
+import 'package:BJDelivery/models/user_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CustomDrawer extends StatelessWidget {
   @override
@@ -10,15 +12,14 @@ class CustomDrawer extends StatelessWidget {
         children: <Widget>[
           Container(
             decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color.fromARGB(255, 203, 236, 241),
-                  Colors.white,
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              )
-            ),
+                gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 203, 236, 241),
+                Colors.white,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            )),
           ),
           ListView(
             children: <Widget>[
@@ -44,6 +45,27 @@ class CustomDrawer extends StatelessWidget {
                 title: 'Lojas',
                 page: 3,
               ),
+              Consumer<UserManager>(builder: (_, userManager, __) {
+                if (userManager.adminEnabled) {
+                  return Column(
+                    children: const <Widget>[
+                      Divider(),
+                      DrawerTile(
+                        iconData: Icons.person,
+                        title: 'Usúarios',
+                        page: 4,
+                      ),
+                      DrawerTile(
+                        iconData: Icons.shopping_basket,
+                        title: 'Pedidos',
+                        page: 5,
+                      ),
+                    ],
+                  );
+                } else {
+                  return Container();
+                }
+              })
             ],
           ),
         ],
