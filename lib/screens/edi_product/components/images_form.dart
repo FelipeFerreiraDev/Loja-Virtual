@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:BJDelivery/models/product.dart';
+import 'package:BJDelivery/screens/edi_product/components/image_source_sheet.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class ImagesForm extends StatelessWidget {
           aspectRatio: 1,
           child: Carousel(
             boxFit: BoxFit.contain,
-            images: state.value.map((image) {
+            images: state.value.map<Widget>((image) {
               return Stack(
                 fit: StackFit.expand,
                 children: <Widget>[
@@ -35,7 +36,7 @@ class ImagesForm extends StatelessWidget {
                   Align(
                     alignment: Alignment.topRight,
                     child: IconButton(
-                        icon: Icon(Icons.remove),
+                        icon: const Icon(Icons.remove),
                         color: Colors.red,
                         onPressed: () {
                           state.value.remove(image);
@@ -44,7 +45,18 @@ class ImagesForm extends StatelessWidget {
                   )
                 ],
               );
-            }).toList(),
+            }).toList()
+              ..add(Material(
+                  color: Colors.grey[100],
+                  child: IconButton(
+                      icon: const Icon(Icons.add_a_photo),
+                      color: Theme.of(context).primaryColor,
+                      iconSize: 50,
+                      onPressed: () {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (_) => ImageSourceSheet());
+                      }))),
             dotSize: 4,
             dotSpacing: 15,
             dotBgColor: Colors.transparent,
