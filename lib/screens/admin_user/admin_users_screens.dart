@@ -1,3 +1,4 @@
+import 'package:BJDelivery/commom/custom_drawer/custom_drawer.dart';
 import 'package:BJDelivery/models/admin_users_manager.dart';
 import 'package:alphabet_list_scroll_view/alphabet_list_scroll_view.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ class AdminUsersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(),
         appBar: AppBar(
           centerTitle: true,
           title: const Text('Usuários'),
