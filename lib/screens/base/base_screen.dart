@@ -1,5 +1,6 @@
 import 'package:BJDelivery/models/page_manager.dart';
 import 'package:BJDelivery/models/user_manager.dart';
+import 'package:BJDelivery/screens/admin_user/admin_users_screens.dart';
 import 'package:BJDelivery/screens/home/home_screen.dart';
 import 'package:BJDelivery/screens/products/products_screen.dart';
 import 'package:flutter/material.dart';
@@ -33,12 +34,7 @@ class BaseScreen extends StatelessWidget {
                 ),
               ),
               if (userManager.adminEnabled) ...[
-                Scaffold(
-                  drawer: CustomDrawer(),
-                  appBar: AppBar(
-                    title: const Text('Usuários'),
-                  ),
-                ),
+                AdminUsersScreen(),
                 Scaffold(
                   drawer: CustomDrawer(),
                   appBar: AppBar(
