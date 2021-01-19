@@ -5,6 +5,7 @@ import 'package:BJDelivery/models/product.dart';
 import 'package:BJDelivery/models/product_manager.dart';
 import 'package:BJDelivery/models/user_manager.dart';
 import 'package:BJDelivery/screens/cart/cart_screen.dart';
+import 'package:BJDelivery/screens/edi_product/edit_product_screen.dart';
 import 'package:BJDelivery/screens/login/login_screen.dart';
 import 'package:BJDelivery/screens/product/product_screen.dart';
 import 'package:BJDelivery/screens/signup/signup_screen.dart';
@@ -71,6 +72,9 @@ class MyApp extends StatelessWidget {
 
             case '/cart':
               return MaterialPageRoute(builder: (_) => CartScreen());
+
+            case '/edit_product':
+              return MaterialPageRoute(builder: (_) => EditProductScreen());
 
             case '/base':
             default:
