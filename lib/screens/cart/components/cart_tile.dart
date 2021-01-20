@@ -46,8 +46,8 @@ class CartTile extends StatelessWidget {
                         if (cartProduct.hasStock)
                           return Text(
                               cartProduct.product.typeOfSale == true
-                                  ? 'R\$ ${cartProduct.product.price}'
-                                  : 'R\$ ${cartProduct.product.price}/Kg',
+                                  ? 'R\$ ${cartProduct.product.price.toStringAsFixed(2)}'
+                                  : 'R\$ ${cartProduct.product.price.toStringAsFixed(2)}/Kg',
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 18,

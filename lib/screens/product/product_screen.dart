@@ -78,8 +78,8 @@ class ProductScreen extends StatelessWidget {
                   ),
                   Text(
                     product.typeOfSale == true
-                        ? 'R\$ ${product.price.toString()}'
-                        : 'R\$ ${product.price.toString()} /kg',
+                        ? 'R\$ ${product.price.toStringAsFixed(2)}'
+                        : 'R\$ ${product.price.toStringAsFixed(2)} /kg',
                     style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
