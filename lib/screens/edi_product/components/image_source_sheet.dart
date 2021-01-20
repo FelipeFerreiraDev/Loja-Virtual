@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageSourceSheet extends StatelessWidget {
@@ -12,6 +13,20 @@ class ImageSourceSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Future<void> editImage(String path) async {
+    final File croppedFile = await ImageCropper.cropImage(
+        sourcePath: path,
+        aspectRatio: const CropAspectRatio(ratioX: 1.0, ratioY: 1.0), androidUiSettings: AndroidUiSettings(
+          toolbarTitle: 'Editar Imagem',
+          toolbarColor: Theme.of(context).primaryColor,
+          toolbarWidgetColor: Colors.white,
+        ),);
+        if(croppedFile!= null) {
+          onImageSelected(croppedFile);
+        }
+  }
+
     return BottomSheet(
         onClosing: () {},
         builder: (_) => Column(
@@ -22,7 +37,7 @@ class ImageSourceSheet extends StatelessWidget {
                   onPressed: () async {
                     final PickedFile file =
                         await picker.getImage(source: ImageSource.camera);
-                    onImageSelected(File(file.path));
+                    editImage(file.path);
                   },
                   child: const Text('Camêra'),
                 ),
@@ -30,7 +45,7 @@ class ImageSourceSheet extends StatelessWidget {
                   onPressed: () async {
                     final PickedFile file =
                         await picker.getImage(source: ImageSource.gallery);
-                    onImageSelected(File(file.path));
+                    editImage(file.path);
                   },
                   child: const Text('Galeria'),
                 ),
