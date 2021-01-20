@@ -58,8 +58,8 @@ class EditProductScreen extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 16),
                     child: Text(
                       'Descrição',
                       style:
@@ -80,9 +80,9 @@ class EditProductScreen extends StatelessWidget {
                   RaisedButton(
                     onPressed: () {
                       if (formKey.currentState.validate()) {
-                        print('Válido!!!');
+                        //print('Válido!!!');
                       } else {
-                        print('Invalido');
+                        //print('Invalido');
                       }
                     },
                     child: const Text('Salvar'),
