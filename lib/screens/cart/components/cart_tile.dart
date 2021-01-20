@@ -54,9 +54,9 @@ class CartTile extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                               ));
                         else
-                          return Text(
+                          return const Text(
                             'Sem estoque disponível',
-                            style: const TextStyle(color: Colors.red, fontSize: 12),
+                            style: TextStyle(color: Colors.red, fontSize: 12),
                           );
                       },
                     )
